@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { hideCompleted, toggleHide } from '../../slices/todoSlice';
+import { toggleHide } from '../../slices/todoSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
 import Checkbox from '../Checkbox/Checkbox';
 import styles from './HideCompleted.module.css';
@@ -9,7 +9,6 @@ export default function HideCompleted() {
    const hidden = useAppSelector((state) => state.todos.hideCompleted);
 
    useEffect(() => {
-      dispatch(hideCompleted(hidden));
       localStorage.setItem('hideCompleted', JSON.stringify(hidden));
    }, [hidden]);
 

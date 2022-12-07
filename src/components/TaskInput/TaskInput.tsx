@@ -24,7 +24,6 @@ export default function TaskInput() {
             addTodo({
                id: Date.now(),
                description,
-               hidden: false,
                completed: false,
             })
          );

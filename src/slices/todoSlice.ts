@@ -9,7 +9,6 @@ export type TTodo = {
    description: string;
    id: number;
    completed: boolean;
-   hidden: boolean;
 };
 
 export type TTodosState = {
@@ -30,22 +29,10 @@ const todosSlice = createSlice({
       removeTodo(state, action: PayloadAction<number>) {
          state.todos = state.todos.filter((el) => el.id !== action.payload);
       },
-      hideCompleted(state, action: PayloadAction<boolean>) {
-         state.todos.map((el) => {
-            if (el.completed) {
-               el.hidden = action.payload;
-               return el;
-            }
-            return el;
-         });
-      },
       toggleComplete(state, action: PayloadAction<number>) {
          state.todos = state.todos.map((el) => {
             if (el.id === action.payload) {
                el.completed = !el.completed;
-               if (state.hideCompleted) {
-                  el.hidden = true;
-               }
                return el;
             }
             return el;
@@ -57,11 +44,6 @@ const todosSlice = createSlice({
    },
 });
 
-export const {
-   toggleComplete,
-   addTodo,
-   removeTodo,
-   toggleHide,
-   hideCompleted,
-} = todosSlice.actions;
+export const { toggleComplete, addTodo, removeTodo, toggleHide } =
+   todosSlice.actions;
 export default todosSlice.reducer;
